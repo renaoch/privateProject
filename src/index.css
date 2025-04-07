@@ -114,3 +114,9 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
+
+/* globals.css */
+body {
+  background-color: #18191a; /* Dark background color */
+  color: white; /* Optional: set text color to white for better visibility */
+}

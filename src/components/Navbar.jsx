@@ -16,7 +16,7 @@ const Navbar = ({ user = { name: "Alice Smith" } }) => {
   return (
     <header className="w-full bg-black text-white px-8 py-4 shadow-lg flex justify-between items-center border-b border-zinc-800">
       {/* Logo / Title */}
-      <div className="text-2xl font-bold tracking-tight text-indigo-400 flex items-center gap-2">
+      <div className="text-2xl font-bold tracking-tight text-yellow-400 flex items-center gap-2">
         Welcome, <span className="font-semibold text-white">{user.name}</span>
       </div>
 

@@ -5,7 +5,31 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import image from "../assets/image.png";
 import { Link } from "react-router-dom";
+import { supabase } from "./lib/supabaseClient";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export function LoginForm({ className, ...props }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError(null);
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setError(error.message);
+    } else {
+      console.log("Logged in:", data);
+      navigate("/dashboard"); // or wherever you want to redirect
+    }
+  };
   return (
     <div
       className={cn("bg-transparent flex flex-col gap-6", className)}
@@ -13,7 +37,7 @@ export function LoginForm({ className, ...props }) {
     >
       <Card className=" overflow-hidden p-0">
         <CardContent className=" grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="p-6 md:p-8" onSubmit={handleLogin}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
@@ -28,6 +52,8 @@ export function LoginForm({ className, ...props }) {
                   type="email"
                   placeholder="m@example.com"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="grid gap-3">
@@ -40,7 +66,13 @@ export function LoginForm({ className, ...props }) {
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
               <Button type="submit" className="w-full">
                 Login

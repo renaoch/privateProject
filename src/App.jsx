@@ -10,7 +10,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import VantaBackground from "./components/vantaBackground";
-import Dashboard from "./components/dashboard";
+import Dashboard from "./components/Dashboard";
 import "./index.css";
 
 const AppRoutes = () => {
