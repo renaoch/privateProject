@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import image from "../assets/image.png";
+
 import { Link } from "react-router-dom";
 import { supabase } from "./lib/supabaseClient";
 import { useState } from "react";

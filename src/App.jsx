@@ -12,6 +12,7 @@ import {
 import VantaBackground from "./components/vantaBackground";
 import Dashboard from "./components/Dashboard";
 import "./index.css";
+import AdminDashboard from "../src/components/admin/AdminDashboard";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -28,6 +29,7 @@ const AppRoutes = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </>
   );

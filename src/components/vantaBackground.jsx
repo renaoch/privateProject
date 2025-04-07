@@ -17,7 +17,8 @@ const VantaBackground = () => {
         minWidth: 200,
         scale: 1,
         scaleMobile: 1,
-        backgroundColor: 0x000000,
+        backgroundColor: 0x1a1a1a,
+        color: 0xff00ff,
       });
 
       return () => {
