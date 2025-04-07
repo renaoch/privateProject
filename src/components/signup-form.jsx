@@ -8,7 +8,10 @@ import { Link } from "react-router-dom";
 
 export function Signup({ className, ...props }) {
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div
+      className={cn("bg-transparent flex flex-col gap-6", className)}
+      {...props}
+    >
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
           <form className="p-6 md:p-8">
@@ -89,12 +92,11 @@ export function Signup({ className, ...props }) {
               </div>
             </div>
           </form>
-          <div className="bg-muted relative hidden md:block">
-            <img
-              src={image}
-              alt="Image"
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.8]"
-            />
+          <div className="bg-transparent mt-17 relative hidden md:block flex justify-center items-center w-full h-full">
+            <iframe
+              src="https://lottie.host/embed/f8e3a4a5-9ac3-4b82-adf5-18f352f90d0f/zZdndamhBP.lottie"
+              className="w-full h-full max-w-3xl max-h-96"
+            ></iframe>
           </div>
         </CardContent>
       </Card>

@@ -1,0 +1,14 @@
+/* globals.css */
+:root {
+  --viewport-height: 100vh;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --viewport-height: 100dvh;
+  }
+}
+
+.fullscreen-fix {
+  height: var(--viewport-height);
+}

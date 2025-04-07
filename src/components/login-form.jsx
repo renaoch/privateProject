@@ -7,9 +7,12 @@ import image from "../assets/image.png";
 import { Link } from "react-router-dom";
 export function LoginForm({ className, ...props }) {
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="overflow-hidden p-0">
-        <CardContent className="grid p-0 md:grid-cols-2">
+    <div
+      className={cn("bg-transparent flex flex-col gap-6", className)}
+      {...props}
+    >
+      <Card className=" overflow-hidden p-0">
+        <CardContent className=" grid p-0 md:grid-cols-2">
           <form className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
@@ -84,16 +87,15 @@ export function LoginForm({ className, ...props }) {
               </div>
             </div>
           </form>
-          <div className="bg-muted relative hidden md:block">
-            <img
-              src={image}
-              alt="Image"
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.8]"
-            />
+          <div className="bg-transparent mt-8 relative hidden md:block flex justify-center items-center w-full h-full">
+            <iframe
+              src="https://lottie.host/embed/f8e3a4a5-9ac3-4b82-adf5-18f352f90d0f/zZdndamhBP.lottie"
+              className="w-full h-full max-w-3xl max-h-96"
+            ></iframe>
           </div>
         </CardContent>
       </Card>
-      <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
+      <div className=" text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
         and <a href="#">Privacy Policy</a>.
       </div>
