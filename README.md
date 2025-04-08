@@ -21,7 +21,7 @@ A sleek and powerful dashboard that allows contractors to manage clients and tra
 
 | Frontend        | Backend         | Database        | UI Components    |
 |-----------------|------------------|------------------|------------------|
-| React (Next.js) | Supabase (Auth + API) | PostgreSQL (Supabase) | Tailwind CSS + Radix UI + Lucide Icons |
+| React    | Supabase (Auth + API) | PostgreSQL (Supabase) | Tailwind CSS + Radix UI + Lucide Icons |
 
 ---
 
