@@ -2,7 +2,7 @@
 
 A sleek and powerful dashboard that allows contractors to manage clients and track project progress — complete with daily updates, image uploads, and a mobile-friendly interface.
 
-![Dashboard Screenshot](./public/preview.png) <!-- Replace with your actual screenshot path -->
+![Dashboard Screenshot](./public/image1.png) <!-- Replace with your actual screenshot path -->
 
 ---
 
