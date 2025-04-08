@@ -50,7 +50,7 @@ export default function Dashboard() {
   const handleSubmitUpdate = async (progressData) => {
     if (!selectedClient) return;
 
-    const { summary, details, image } = progressData;
+    const { summary, details, images } = progressData;
     const date = new Date().toISOString().split("T")[0];
 
     const { error } = await supabase.from("progress").insert([
@@ -59,7 +59,7 @@ export default function Dashboard() {
         date,
         summary,
         details,
-        image,
+        images,
       },
     ]);
 

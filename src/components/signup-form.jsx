@@ -1,20 +1,41 @@
+import { useState } from "react";
 import { cn } from "./lib/utils";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-
 import { Link } from "react-router-dom";
 
 export function Signup({ className, ...props }) {
+  const [isContractor, setIsContractor] = useState(false);
+  const [companyKey, setCompanyKey] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleContractorChange = (event) => {
+    setIsContractor(event.target.value === "contractor");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+
+      return;
+    }
+
+    alert("This function is currently disabled! Contact developer");
+    // Handle form submission logic
+  };
+
   return (
     <div
       className={cn("bg-transparent flex flex-col gap-6", className)}
       {...props}
     >
-      <Card className="overflow-hidden p-0">
+      <Card className="overflow-hidden p-">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form onSubmit={handleSubmit} className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Create an account</h1>
@@ -42,8 +63,52 @@ export function Signup({ className, ...props }) {
                   type="password"
                   required
                   placeholder="********"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              <div className="grid gap-3">
+                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  required
+                  placeholder="********"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+              <div className="grid gap-3">
+                <Label htmlFor="role">Select Role</Label>
+                <select
+                  id="role"
+                  className="p-2 border rounded"
+                  onChange={handleContractorChange}
+                  required
+                >
+                  <option class="bg-black" value="client">
+                    Client
+                  </option>
+                  <option class="bg-black" value="contractor">
+                    Contractor
+                  </option>
+                </select>
+              </div>
+
+              {isContractor && (
+                <div className="grid gap-3">
+                  <Label htmlFor="companyKey">Company Key</Label>
+                  <Input
+                    id="companyKey"
+                    type="text"
+                    placeholder="Enter company key"
+                    value={companyKey}
+                    onChange={(e) => setCompanyKey(e.target.value)}
+                    required
+                  />
+                </div>
+              )}
+
               <Button type="submit" className="w-full">
                 Sign Up
               </Button>
@@ -92,7 +157,7 @@ export function Signup({ className, ...props }) {
               </div>
             </div>
           </form>
-          <div className="bg-transparent mt-17 relative hidden md:block flex justify-center items-center w-full h-full">
+          <div className="bg-transparent mt-45 relative hidden md:block flex justify-center items-center w-full h-full">
             <iframe
               src="https://lottie.host/embed/f8e3a4a5-9ac3-4b82-adf5-18f352f90d0f/zZdndamhBP.lottie"
               className="w-full h-full max-w-3xl max-h-96"

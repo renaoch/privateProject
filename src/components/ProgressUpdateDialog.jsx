@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { supabase } from "./lib/supabaseClient"; // or your supabase client path
+import { v4 as uuidv4 } from "uuid"; // to avoid duplicate file names
 import {
   Dialog,
   DialogContent,
@@ -22,30 +24,49 @@ export default function ProgressUpdateDialog({
   const handleFormSubmit = async () => {
     if (!selectedClient) return;
 
-    // Call the external handleSubmitUpdate function to handle the actual update logic
+    // 1. Upload images to Supabase Storage
+    const uploadedImageUrls = [];
+
+    for (const image of images) {
+      const uniqueFileName = `${uuidv4()}-${image.name}`;
+
+      const { data, error } = await supabase.storage
+        .from("jagya-images")
+        .upload(uniqueFileName, image);
+
+      if (error) {
+        console.error("Image upload failed:", error);
+        continue;
+      }
+
+      const { data: publicUrlData } = supabase.storage
+        .from("jagya-images")
+        .getPublicUrl(uniqueFileName);
+
+      uploadedImageUrls.push(publicUrlData.publicUrl);
+    }
+
+    // 2. Proceed with update submission
     const newUpdate = await handleSubmitUpdate({
       selectedClient,
       date,
       summary,
       details,
-      images,
+      images: uploadedImageUrls, // 💡 pass the actual URLs here
     });
 
-    // If new update is successful, update the parent component's state (clients)
     if (newUpdate) {
-      setClients((prevClients) => {
-        return prevClients.map((client) =>
+      setClients((prevClients) =>
+        prevClients.map((client) =>
           client.id === selectedClient.id
             ? { ...client, progress: [...client.progress, newUpdate] }
             : client
-        );
-      });
-
-      // Close the dialog on successful submission
+        )
+      );
       setOpen(false);
     }
 
-    // Reset form values after submission
+    // Reset the form
     setDate("");
     setSummary("");
     setDetails("");
@@ -111,7 +132,9 @@ export default function ProgressUpdateDialog({
               multiple
               accept="image/*"
               className="w-full p-2 bg-zinc-800 border border-zinc-700 rounded-md"
-              onChange={(e) => setImages([...e.target.files])}
+              onChange={(e) =>
+                setImages((prev) => [...prev, ...e.target.files])
+              }
             />
           </div>
           <div className="pt-2">
