@@ -19,13 +19,13 @@ const AppRoutes = () => {
 
   // Only show Vanta on login or signup
   const showVanta =
-    location.pathname === "/login" || location.pathname === "/signup";
+    location.pathname === "/" || location.pathname === "/signup";
 
   return (
     <>
       {showVanta && <VantaBackground />}
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/settings" element={<SettingsPage />} />
